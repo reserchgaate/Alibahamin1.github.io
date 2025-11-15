@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ReserchGaate — مرکز خدمات آماری و پژوهشی</title>
+
+  <!-- Google Font (Vazirmatn) -->
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      --accent1: #7b61ff;
+      --accent2: #00d4ff;
+      --muted: #6b7280;
+      --card-bg: #ffffff;
+      --glass: rgba(255,255,255,0.7);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family: "Vazirmatn", Tahoma, Arial, sans-serif;
+      margin:0;
+      direction: rtl;
+      background: linear-gradient(180deg,#f7f9ff 0%, #eef6ff 100%);
+      color:#12263b;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+    }
+
+    /* Header */
+    .topbar{
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#fff;
+      padding:18px 24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .brand img{width:90px;height:90px;border-radius:14px;object-fit:cover;box-shadow:0 8px 20px rgba(0,0,0,0.2)}
+    .brand h1{margin:0;font-size:20px;letter-spacing:0.6px}
+    .brand p{margin:0;font-size:12px;opacity:.95}
+
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .top-actions a{color:#fff;text-decoration:none;background:rgba(255,255,255,0.12);padding:8px 12px;border-radius:8px;font-weight:600}
+    .top-actions a:hover{background:rgba(255,255,255,0.18)}
+
+    /* Hero */
+    .hero{
+      display:flex;
+      gap:36px;
+      align-items:center;
+      padding:48px 6%;
+    }
+    .hero-left{flex:1;max-width:720px}
+    .hero-left h2{font-size:32px;margin:0 0 12px;color:#0b2540}
+    .hero-left p{color:var(--muted);margin:0 0 18px}
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .btn{
+      display:inline-block;padding:12px 18px;border-radius:10px;color:white;text-decoration:none;font-weight:700;
+      box-shadow:0 10px 30px rgba(123,97,255,0.14);
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2))}
+    .btn-outline{background:transparent;border:2px solid rgba(11,37,64,0.06);color:var(--accent1);font-weight:700}
+
+    .hero-right{flex:0 0 420px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));border-radius:16px;padding:18px;box-shadow:0 12px 30px rgba(16,24,40,0.06)}
+    .profile-thumb{display:flex;gap:12px;align-items:center}
+    .profile-thumb img{width:92px;height:92px;border-radius:12px;object-fit:cover}
+    .profile-info h3{margin:0;color:#0b2540}
+    .profile-info p{margin:2px 0 0;color:var(--muted);font-size:13px}
+
+    .stats{display:flex;gap:8px;margin-top:12px}
+    .stat{background:#fff;padding:10px;border-radius:10px;box-shadow:0 6px 18px rgba(11,37,64,0.04);flex:1;text-align:center}
+    .stat strong{display:block;font-size:18px;color:var(--accent1)}
+
+    /* Main area */
+    .container{padding:24px 6%}
+
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+    .section-title h3{margin:0;color:#102233}
+    .section-title p{margin:0;color:var(--muted);font-size:13px}
+
+    /* About & services */
+    .about-card{background:var(--card-bg);padding:20px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.04);margin-bottom:18px}
+    .about-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .qual-list{list-style:none;padding:0;margin:0}
+    .qual-list li{padding:8px 0;border-bottom:1px dashed #eef2f6;color:#16324a}
+    .soft{color:var(--muted);font-size:14px;margin-top:10px}
+
+    /* Services cards */
+    .services{display:flex;flex-wrap:wrap;gap:14px}
+    .service{
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:12px;padding:14px;flex:1 1 260px;box-shadow:0 10px 30px rgba(16,24,40,0.04);
+    }
+    .service h4{margin:0 0 6px;color:#0b2540}
+    .service p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Products / files */
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:14px}
+    .file-card{
+      background:linear-gradient(180deg,#ffffff,#ffffff);
+      border-radius:12px;padding:12px;box-shadow:0 10px 30px rgba(11,37,64,0.04);
+      display:flex;flex-direction:column;gap:10px;justify-content:space-between;
+    }
+    .file-card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .file-meta{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .file-meta h4{margin:0;font-size:16px}
+    .price{color:#ff5c7c;font-weight:800}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:#eef8ff;color:#0b6fb2}
+
+    .actions{display:flex;gap:8px;align-items:center}
+    .actions .download{background:#28a745;padding:8px 10px;border-radius:8px;color:#fff;text-decoration:none;font-weight:700}
+    .actions .pay{background:#ff8a00;padding:8px 10px;border-radius:8px;color:#fff;font-weight:700;border:none;cursor:pointer}
+    .actions .disabled{background:#9aa3b2;cursor:not-allowed}
+
+    /* freebies label */
+    .free{background:#00b894;color:#fff;padding:6px 10px;border-radius:8px;font-weight:700}
+
+    /* footer */
+    footer{padding:24px;background:transparent;text-align:center;color:var(--muted);margin-top:32px}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{flex-direction:column;padding:24px}
+      .about-grid{grid-template-columns:1fr}
+      .hero-right{order:-1;width:100%}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar / Header -->
+  <div class="topbar">
+    <div class="brand">
+      <img src="images/logo.png" alt="ReserchGaate logo">
+      <div>
+        <h1>ReserchGaate</h1>
+        <p>مرکز خدمات پژوهشی و تحلیل آماری</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <a href="#contact">تماس</a>
+      <a href="#products">محصولات</a>
+      <a href="#about">درباره</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-left">
+      <h2>خدمات پژوهشی، تحلیل آماری و انجام پایان‌نامه با کیفیت</h2>
+      <p>انجام تحلیل آماری، تدوین پایان‌نامه و تهیه مقالات علمی. خدمات شامل: تحلیل آماری با SPSS, AMOS, EViews، تهیه رفرنس با EndNote، ساخت پرسشنامه آنلاین و انجام پروژه در رشته‌های روانشناسی، مدیریت، آمار، حسابداری و تربیت‌بدنی.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#products">مشاهده محصولات و پروژه‌ها</a>
+        <a class="btn btn-outline" href="#contact">درخواست مشاوره</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="profile-thumb">
+        <img src="images/profile.jpg" alt="عکس پروفایل">
+        <div class="profile-info">
+          <h3>/مهندس علی</h3>
+          <p>کارشناس آمار │ کارشناسی‌ارشد حسابداری</p>
+        </div>
+      </div>
+
+      <div class="stats" style="margin-top:14px">
+        <div class="stat">
+          <span class="num">+۸ سال</span>
+          <small>سابقه‌ کاری</small>
+        </div>
+        <div class="stat">
+          <span class="num">+۳۰۰</span>
+          <small>پروژه و تحلیل</small>
+        </div>
+        <div class="stat">
+          <span class="num">+۵۰</span>
+          <small>مقالات و پایان‌نامه</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- About -->
+    <div class="section-title">
+      <h3>درباره من</h3>
+      <p>معرفی کوتاه و سوابق</p>
+    </div>
+
+    <div class="about-card about-grid">
+      <div>
+        <p>اینجانب دارای <strong>کارشناسی رشته آمار</strong>، <strong>کارشناسی‌ارشد رشته حسابداری</strong> و بیش از چندین سال سابقه در انجام تحلیل‌ها و پروژه‌های آماری می‌باشم. تخصص‌ها و خدمات من شامل موارد زیر است:</p>
+
+        <ul class="qual-list" style="margin-top:12px">
+          <li>انجام تحلیل‌های آماری و مدل‌سازی با نرم‌افزار <strong>SPSS</strong>، <strong>AMOS</strong>، <strong>EViews</strong></li>
+          <li>تهیه و تنظیم منابع و رفرنس‌ها با <strong>EndNote</strong></li>
+          <li>طراحی و ساخت لینک پرسشنامه آنلاین (Google Forms / Qualtrics / SurveyMonkey)</li>
+          <li>انجام پایان‌نامه و پروژه‌های رشته‌های: روانشناسی، مدیریت، آمار، حسابداری، تربیت‌بدنی</li>
+          <li>تدوین مقاله، گزارش آماری و تحلیل داده‌های پیمایشی و آزمایشی</li>
+        </ul>
+
+        <p class="soft">در کنار پروژه‌های سفارشی، چند پروژه نمونه و فایل‌های PDF آموزشی به‌صورت <strong>رایگان</strong> در دسترس بازدیدکنندگان قرار گرفته است.</p>
+      </div>
+
+      <aside style="padding-left:10px">
+        <div style="background:#f9fbff;border-radius:10px;padding:12px">
+          <h4 style="margin:0 0 8px">مهارت‌ها و نرم‌افزارها</h4>
+          <p style="margin:0 0 6px"><strong>SPSS</strong> — تحلیل توصیفی، آزمون‌های فرض، رگرسیون، آنالیز عاملی</p>
+          <p style="margin:0 0 6px"><strong>AMOS</strong> — تحلیل مسیر، مدل سازه‌ای</p>
+          <p style="margin:0 0 6px"><strong>EViews</strong> — سری زمانی و اقتصادسنجی</p>
+          <p style="margin:0 0 6px"><strong>EndNote</strong> — مدیریت منابع و ارجاعات</p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Services -->
+    <div class="section-title" style="margin-top:20px">
+      <h3>خدمات قابل ارائه</h3>
+      <p>خدمات تخصصی که ارائه می‌شود</p>
+    </div>
+
+    <div class="services">
+      <div class="service">
+        <h4>انجام پایان‌نامه (از صفر تا صد)</h4>
+        <p>پروپوزال، جمع‌آوری داده، تحلیل و نگارش فصل‌های پایان‌نامه (رشته‌های مدیریت، روانشناسی، حسابداری و ...)</p>
+      </div>
+      <div class="service">
+        <h4>تحلیل آماری و مدل‌سازی</h4>
+        <p>انجام تحلیل‌های پیشرفته با SPSS، AMOS و EViews و گزارش کامل نتایج</p>
+      </div>
+      <div class="service">
+        <h4>تهیه مقالات و اصلاح نگارش</h4>
+        <p>ویرایش ساختاری، اصلاح نتایج و آماده‌سازی برای ارسال به ژورنال</p>
+      </div>
+      <div class="service">
+        <h4>ساخت پرسشنامه آنلاین</h4>
+        <p>طراحی پرسشنامه، تهیه لینک و جمع‌آوری داده</p>
+      </div>
+    </div>
+
+    <!-- Products / Files -->
+    <div class="section-title" style="margin-top:24px">
+      <h3 id="products">فایل‌ها و پروژه‌های نمونه</h3>
+      <p>چند فایل نمونه (برخی رایگان و برخی مشروط به پرداخت نمایشی)</p>
+    </div>
+
+    <div class="card-grid" id="filesGrid">
+      <!-- Free PDF -->
+      <div class="file-card">
+        <img src="images/file1.jpg" alt="نمونه ۱">
+        <div class="file-meta">
+          <h4>پروژه نمونه: تحلیل آماری با SPSS</h4>
+          <div class="tag free">رایگان</div>
+        </div>
+        <p style="color:var(--muted);font-size:13px">فایل PDF شامل گزارش و کدهای خروجی SPSS.</p>
+        <div class="actions">
+          <a class="download" href="files/sample_sp.spss.pdf" download>دانلود رایگان</a>
+          <span style="color:var(--muted);font-size:13px">— بدون نیاز به پرداخت</span>
+        </div>
+      </div>
+
+      <!-- Paid (simulated) -->
+      <div class="file-card">
+        <img src="images/file2.jpg" alt="نمونه ۲">
+        <div class="file-meta">
+          <h4>پایان‌نامه نمونه: دیجیتالی‌سازی سازمان‌ها</h4>
+          <div class="price">۸۵,۰۰۰ تومان</div>
+        </div>
+        <p style="color:var(--muted);font-size:13px">فایل PDF کامل پایان‌نامه. پس از پرداخت نمایشی دانلود فعال می‌شود.</p>
+        <div class="actions">
+          <a class="download " id="dl-tn" href="files/thesis-sample.pdf" download >دانلود (غیرفعال)</a>
+          <button class="pay" data-file="files/thesis-sample.pdf" data-dl="dl-tn">پرداخت (نمایشی)</button>
+        </div>
+      </div>
+
+      <!-- Another free -->
+      <div class="file-card">
+        <img src="images/file3.jpg" alt="نمونه ۳">
+        <div class="file-meta">
+          <h4>مقاله نمونه: روش‌های آماری</h4>
+          <div class="tag free">رایگان</div>
+        </div>
+        <p style="color:var(--muted);font-size:13px">مقاله‌ای آموزشی در قالب PDF.</p>
+        <div class="actions">
+          <a class="download" href="files/article-sample.pdf" download>دانلود رایگان</a>
+          <span style="color:var(--muted);font-size:13px">— بدون نیاز به پرداخت</span>
+        </div>
+      </div>
+
+      <!-- Another paid -->
+      <div class="file-card">
+        <img src="images/file4.jpg" alt="نمونه ۴">
+        <div class="file-meta">
+          <h4>پروژه تخصصی اقتصادسنجی (EViews)</h4>
+          <div class="price">۴۵,۰۰۰ تومان</div>
+        </div>
+        <p style="color:var(--muted);font-size:13px">شامل داده‌ها و فایل‌های EViews و تحلیل کامل.</p>
+        <div class="actions">
+          <a class="download " id="dl-eviews" href="files/eviews-sample.zip" download >دانلود (غیرفعال)</a>
+          <button class="pay" data-file="files/eviews-sample.zip" data-dl="dl-eviews">پرداخت (نمایشی)</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Contact / Request form -->
+    <div class="section-title" style="margin-top:28px">
+      <h3 id="contact">درخواست و تماس</h3>
+      <p>فرم سریع تماس یا سفارش پروژه</p>
+    </div>
+
+    <div class="about-card">
+      <form id="contactForm" onsubmit="return submitForm(event)">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <input name="name" placeholder="نام و نام خانوادگی" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6eefb" required>
+          <input name="email" placeholder="ایمیل" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6eefb" required>
+        </div>
+        <div style="margin-top:10px">
+          <select name="service" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eef2f8">
+            <option value="thesis">انجام پایان‌نامه</option>
+            <option value="analysis">تحلیل آماری</option>
+            <option value="questionnaire">ساخت پرسشنامه</option>
+            <option value="article">تهیه مقاله</option>
+          </select>
+        </div>
+        <div style="margin-top:10px">
+          <textarea name="desc" placeholder="توضیح کوتاه درباره پروژه" style="width:100%;min-height:110px;padding:10px;border-radius:8px;border:1px solid #eef2f8"></textarea>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+          <button class="btn btn-primary" type="submit">ارسال درخواست</button>
+          <span style="color:var(--muted);font-size:13px">پاسخ اولیه در کمتر از ۲۴ ساعت</span>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+<footer>
+  <p>© ۲۰۲۵ ReserchGaate — تمامی حقوق محفوظ است</p>
+  <p>📞 تلفن تماس: <a href="tel:09373528260">09373528260</a></p>
+  <p>✉️ ایمیل: <a href="mailto:alibahamin.spsss@gmail.com">alibahamin.spsss@gmail.com</a></p>
+</footer>
+
+
+  <!-- Script: پرداخت نمایشی و فرم -->
+  <script>
+    // شبیه‌سازی "پرداخت" — در این نسخه پرداخت واقعی نیست
+    document.querySelectorAll('.pay').forEach(btn=>{
+      btn.addEventListener('click', async (e)=>{
+        const file = btn.dataset.file;
+        const dlId = btn.dataset.dl;
+        const dlAnchor = document.getElementById(dlId);
+
+        // نمایش modal ساده یا confirm
+        const ok = confirm('پرداخت نمایشی انجام شود؟ (پرداخت واقعی نیست؛ با تایید، دانلود فعال می‌شود)');
+        if(!ok) return;
+
+        // شبیه‌سازی پردازش
+        btn.textContent = 'در حال پردازش...';
+        btn.disabled = true;
+
+        // شبیه‌سازی تاخیر (مثلاً تماس به سرور)
+        await new Promise(r=>setTimeout(r, 1200));
+
+        // فعال‌سازی لینک دانلود
+        if(dlAnchor){
+          dlAnchor.classList.remove('disabled');
+          dlAnchor.onclick = null; // اجازه کلیک
+          // کوچک: تغییر متن و ظاهر
+          dlAnchor.style.background = '#28a745';
+          dlAnchor.style.color = '#fff';
+          dlAnchor.style.pointerEvents = 'auto';
+          dlAnchor.style.textDecoration = 'none';
+          dlAnchor.addEventListener('click', ()=> {
+            // بعد از دانلود می‌خواهیم دکمه را به حالت دانلود شده تغییر دهیم
+            setTimeout(()=>{ btn.textContent = 'خرید شده'; }, 400);
+          });
+        }
+
+        btn.textContent = 'پرداخت انجام شد';
+      });
+    });
+
+    // فرم تماس (صرفاً نمایش پیغام و ذخیره محلی)
+    function submitForm(e){
+      e.preventDefault();
+      const f = e.target;
+      const data = {
+        name: f.name.value,
+        email: f.email.value,
+        service: f.service.value,
+        desc: f.desc.value,
+        created: new Date().toISOString()
+      };
+      // ذخیره محلی (نمونه) — در عمل باید به سرور ارسال شود
+      const list = JSON.parse(localStorage.getItem('rg_requests') || '[]');
+      list.push(data);
+      localStorage.setItem('rg_requests', JSON.stringify(list));
+      alert('درخواست شما ثبت شد. با شما تماس می‌گیریم.');
+      f.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
